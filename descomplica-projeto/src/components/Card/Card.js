@@ -3,23 +3,18 @@ import CardBs from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 
-export const Card =()=> {
+export const Card =({image,title,total})=> {
    return (
       <CardBs className=''>
-         <CardBs.Img
-            src='https://images.pexels.com/photos/12156808/pexels-photo-12156808.jpeg?cs=srgb&dl=pexels-mustafa-aqmal-syahputra-12156808.jpg&fm=jpg'
-            alt='CardBs image'
+         <CardBs.Img src={image}alt='CardBs image'
          />
          <CardBs.ImgOverlay>
             <Button variant='primary'>
-               Profile <Badge bg='secondary'>9</Badge>
-               <span className='visually-hidden'>unread messages</span>
+               Profile <Badge bg='secondary'>{total}</Badge>
             </Button>
-            <CardBs.Text>Last updated 3 mins ago</CardBs.Text>
          </CardBs.ImgOverlay>
          <CardBs.Body>
-            <CardBs.Title>Titulo</CardBs.Title>
-            Luan Gama Cerqueira
+            <CardBs.Title>{title}</CardBs.Title>
          </CardBs.Body>
       </CardBs>
    );
