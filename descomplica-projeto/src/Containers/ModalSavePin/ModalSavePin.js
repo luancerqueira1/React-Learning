@@ -15,6 +15,7 @@ export const ModalSavePin = ({open}) => {
                label: 'Criar Pasta',
                variant: 'secondary',
                loading: false,
+               loadingLabel:'Criando',
                onclick: () => {
                   console.log('clicou aquiii');
                },

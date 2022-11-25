@@ -1,13 +1,14 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { ModalSavePin }  from '../../Containers/ModalSavePin/ModalSavePin'
+import { ModalCreateFolder } from '../../Containers/ModalCreateFolder/ModalCreateFolder';
 import { Card } from '../../components/Card/Card';
 
 export const HomePage = () => {
    return (
       <div>
-         <ModalSavePin open={true} />
+         <ModalCreateFolder open={true} />
+
 
          <Container fluid>
             <Row>
