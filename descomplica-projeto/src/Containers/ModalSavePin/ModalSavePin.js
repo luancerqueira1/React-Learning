@@ -16,7 +16,7 @@ export const ModalSavePin = ({open}) => {
                variant: 'secondary',
                loading: false,
                loadingLabel:'Criando',
-               onclick: () => {
+               onClick: () => {
                   console.log('clicou aquiii');
                },
             },

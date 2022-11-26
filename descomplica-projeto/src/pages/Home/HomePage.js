@@ -1,15 +1,22 @@
+// import ReactDOM from 'react-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { ModalCreateFolder } from '../../Containers/ModalCreateFolder/ModalCreateFolder';
 import { Card } from '../../components/Card/Card';
+import { ModalSavePin } from '../../Containers/ModalSavePin/ModalSavePin';
+import { ModalCreateFolder } from '../../Containers/ModalCreateFolder/ModalCreateFolder';
+import { Notification } from '../../components/Notification/Notification';
 
 export const HomePage = () => {
    return (
       <div>
-         <ModalCreateFolder open={true} />
-
-
+         <ModalSavePin open={false} />
+         <ModalCreateFolder open={false} />
+         <Notification
+            message='Criado Com Sucesso'
+            onClose={() => {
+               console.log('ok');
+            }} />
          <Container fluid>
             <Row>
                <Col xs={12} md={3}>
