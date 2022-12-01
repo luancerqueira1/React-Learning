@@ -6,8 +6,10 @@ import { Card } from '../../components/Card/Card';
 import { ModalSavePin } from '../../Containers/ModalSavePin/ModalSavePin';
 import { ModalCreateFolder } from '../../Containers/ModalCreateFolder/ModalCreateFolder';
 import { Notification } from '../../components/Notification/Notification';
+import { useAppContext } from '../../store/AppContext';
 
 export const HomePage = () => {
+   const value = useAppContext()
    return (
       <div>
          <ModalSavePin open={false} />
@@ -16,7 +18,9 @@ export const HomePage = () => {
             message='Criado Com Sucesso'
             onClose={() => {
                console.log('ok');
-            }} />
+            }}
+         />
+          <span>{value.name}</span>
          <Container fluid>
             <Row>
                <Col xs={12} md={3}>
