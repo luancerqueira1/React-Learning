@@ -9,12 +9,19 @@ import { MinhasPastasPage } from './pages/MinhasPastas/MInhasPastasPage';
 import { HeaderPartial } from './Partials/HeaderPartial/HeaderPartial';
 import { AppContext } from './store/AppContext';
 
+const inicialState = {
+   activePinId: null,
+   mode: null,
+   folders: [],
+   type: null,
+};
+
 function App() {
 
    return (
       <BrowserRouter>
          <div className='App'>
-            <AppContext>
+            <AppContext inicialState={inicialState}>
                <HeaderPartial />
                <Routes>
                   <Route path='/' element={<HomePage />} />
