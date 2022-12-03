@@ -3,9 +3,9 @@ import { Button } from '../Button/Button';
 import ModalBs from 'react-bootstrap/Modal';
 
 
-export const Modal = ({title, children, open, controls=[]}) => {
+export const Modal = ({title, children, open, controls=[], onHide}) => {
    return (
-      <ModalBs show={open} onHide={()=>{}}>
+      <ModalBs show={open} onHide={onHide}>
          <ModalBs.Header closeButton>
             <ModalBs.Title>{title}</ModalBs.Title>
          </ModalBs.Header>

@@ -1,17 +1,27 @@
+import *  as types from'./types'
+
 export function reducer(state, action) {
    switch (action.type) {
-      case 'OPEN_MODAL':
+      case types.openModalSavePinType:
          return {
             ...state,
-         }
-      case 'SAVE_PIN':
+            mode: 'savePin',
+         };
+      case types.closeModalsType:
          return {
             ...state,
+            mode: null,
+         };
+      case types.fetchFoldersInitType:
+         return {
+            ...state
          }
-      case 'CLOSE_pin':
+      case types.fetchFoldersSuccessType:
          return {
             ...state,
+            folders: action.payload
          }
+      default:
+         return state;
    }
-   return state;
-}
+};
