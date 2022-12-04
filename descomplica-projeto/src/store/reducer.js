@@ -14,13 +14,18 @@ export function reducer(state, action) {
          };
       case types.fetchFoldersInitType:
          return {
-            ...state
-         }
+            ...state,
+         };
       case types.fetchFoldersSuccessType:
          return {
             ...state,
-            folders: action.payload
-         }
+            folders: action.payload,
+         };
+      case types.openModalCreateFolderType:
+         return {
+            ...state,
+            mode: 'createFolder',
+         };
       default:
          return state;
    }

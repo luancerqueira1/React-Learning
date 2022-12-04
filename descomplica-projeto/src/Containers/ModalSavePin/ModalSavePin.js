@@ -6,17 +6,25 @@ import { Modal } from '../../components/Modal/Modal';
 import { Button } from '../../components/Button/Button';
 import { useAppContext } from '../../store/AppContext';
 import { closeModalsAction } from '../../store/action';
-import { fetchFoldersAction } from '../../store/action';
+import { fetchFoldersAction, openModalCreateFolder } from '../../store/action';
 
 export const ModalSavePin = ({ open }) => {
    const { state, dispatch } = useAppContext();
+   
    const handleClose = () => {
       console.log('fechando');
       dispatch(closeModalsAction());
    };
+
+   const handleClickCreateFolder = () => {
+      console.log('clicou criar Pasta');
+      dispatch(openModalCreateFolder());
+   }
+
    useEffect(() => {
       fetchFoldersAction(dispatch);
    },[]);
+   
    return (
       <Modal
          title='Salvar Pin'
@@ -28,12 +36,9 @@ export const ModalSavePin = ({ open }) => {
                variant: 'secondary',
                loading: false,
                loadingLabel: 'Criando',
-               onClick: () => {
-                  console.log('clicou aquiii');
-               },
+               onClick: handleClickCreateFolder
             },
-         ]}
-      >
+         ]}>
          <ListGroup variant='flush'>
             {state.folders.map((folder,folderIndex) => (
                <ListGroup.Item key={folderIndex}>

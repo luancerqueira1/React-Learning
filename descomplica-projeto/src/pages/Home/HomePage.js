@@ -15,8 +15,8 @@ export const HomePage = () => {
 
    return (
       <div>
-         <ModalSavePin open={state.mode ==='savePin'} />
-         <ModalCreateFolder open={false} />
+         <ModalSavePin open={state.mode === 'savePin'} />
+         <ModalCreateFolder open={state.mode === 'createFolder'} />
          <Notification
             message='Criado Com Sucesso'
             onClose={() => {
