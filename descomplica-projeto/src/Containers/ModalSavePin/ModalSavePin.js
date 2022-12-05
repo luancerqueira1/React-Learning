@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { Modal } from '../../components/Modal/Modal';
 import { Button } from '../../components/Button/Button';
 import { useAppContext } from '../../store/AppContext';
-import { closeModalsAction } from '../../store/action';
+import { closeModalsAction, fetchFoldersSuccessAction } from '../../store/action';
 import { fetchFoldersAction, openModalCreateFolder } from '../../store/action';
 
 export const ModalSavePin = ({ open }) => {
@@ -23,7 +23,11 @@ export const ModalSavePin = ({ open }) => {
 
    useEffect(() => {
       fetchFoldersAction(dispatch);
-   },[]);
+   }, []);
+   
+   useEffect(() => {
+      console.log(state);
+   },[state])
    
    return (
       <Modal
