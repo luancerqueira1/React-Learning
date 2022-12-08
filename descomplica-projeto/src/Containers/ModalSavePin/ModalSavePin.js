@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col';
 import { Modal } from '../../components/Modal/Modal';
 import { Button } from '../../components/Button/Button';
 import { useAppContext } from '../../store/AppContext';
-import { closeModalsAction, fetchFoldersSuccessAction } from '../../store/action';
-import { fetchFoldersAction, openModalCreateFolder } from '../../store/action';
+import { closeModalsAction } from '../../store/action';
+import { fetchFoldersAction, openModalCreateFolder ,savePinInFolderAction} from '../../store/action';
 
 export const ModalSavePin = ({ open }) => {
    const { state, dispatch } = useAppContext();
@@ -25,9 +25,9 @@ export const ModalSavePin = ({ open }) => {
       fetchFoldersAction(dispatch);
    }, []);
    
-   useEffect(() => {
-      console.log(state);
-   },[state])
+   const handleClick = (folderId) => {
+      savePinInFolderAction(dispatch, state.activePinId, folderId);
+   }
    
    return (
       <Modal
@@ -49,7 +49,7 @@ export const ModalSavePin = ({ open }) => {
                   <Row>
                      <Col xs={8}>{folder.name}</Col>
                      <Col className='text-end' xs={4}>
-                        <Button label='Salvar' loadingLabel='Salvando' />
+                        <Button label='Salvar' loadingLabel='Salvando' onClick={()=> handleClick(folder.id)} />
                      </Col>
                   </Row>
                </ListGroup.Item>
