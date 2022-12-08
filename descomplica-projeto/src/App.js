@@ -14,6 +14,7 @@ const inicialState = {
    mode: null,
    folders: [],
    type: null,
+   pins:[]
 };
 
 function App() {

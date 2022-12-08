@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,24 +10,47 @@ import { fetchFoldersAction, openModalCreateFolder ,savePinInFolderAction} from 
 
 export const ModalSavePin = ({ open }) => {
    const { state, dispatch } = useAppContext();
+   const [itensLoading , setItensLoading] = useState({});
    
    const handleClose = () => {
-      console.log('fechando');
       dispatch(closeModalsAction());
    };
 
    const handleClickCreateFolder = () => {
-      console.log('clicou criar Pasta');
       dispatch(openModalCreateFolder());
-   }
+   };
+
+   const foldersNormalized = state.folders.map(folder => {
+      return ({
+         ...folder,
+         saved: folder.pins.includes(state.activePinId)
+      })
+   });
 
    useEffect(() => {
       fetchFoldersAction(dispatch);
-   }, []);
+   },[])
    
-   const handleClick = (folderId) => {
-      savePinInFolderAction(dispatch, state.activePinId, folderId);
-   }
+   const handleClick = async (folderId) => {
+      //loading true
+      setItensLoading((prevState) => {
+         return {
+            ...prevState,
+            [folderId]: true,
+         };
+      });
+
+      await savePinInFolderAction(dispatch, state.activePinId, folderId);
+
+      //loading false
+         setItensLoading((prevState) => {
+            return {
+               ...prevState,
+               [folderId]: false,
+            };
+         });
+       
+   };
    
    return (
       <Modal
@@ -44,12 +67,18 @@ export const ModalSavePin = ({ open }) => {
             },
          ]}>
          <ListGroup variant='flush'>
-            {state.folders.map((folder,folderIndex) => (
+            {foldersNormalized.map((folder,folderIndex) => (
                <ListGroup.Item key={folderIndex}>
                   <Row>
                      <Col xs={8}>{folder.name}</Col>
                      <Col className='text-end' xs={4}>
-                        <Button label='Salvar' loadingLabel='Salvando' onClick={()=> handleClick(folder.id)} />
+                        <Button
+                           label={folder.saved ? 'Salvo' : 'Salvar'}
+                           loadingLabel='Salvando'
+                           onClick={() => handleClick(folder.id)}
+                           variant={folder.saved ? 'secondary' : 'primary'}
+                           disabled={folder.saved}
+                           loading={itensLoading[folder.id]} />
                      </Col>
                   </Row>
                </ListGroup.Item>
